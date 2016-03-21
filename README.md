@@ -1,0 +1,2 @@
+# SymfonyDemoApp
+Symfony Demo application
