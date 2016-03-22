@@ -1,0 +1,16 @@
+{% extends 'IbwJobeetBundle::layout.html.twig' %}
+
+{% block content %}
+    <h1>Job creation</h1>
+
+    {{ form_start(form) }}
+        {{ form_widget(form) }}
+        <input class="btn btn-primary"  type="submit" value="Create" />
+    {{ form_end(form) }}
+
+    <ul style="list-style-type:none">
+        <li>
+            <a href="{{ path('ibw_job_index') }}">Back to the list</a>
+        </li>
+    </ul>
+{% endblock %}

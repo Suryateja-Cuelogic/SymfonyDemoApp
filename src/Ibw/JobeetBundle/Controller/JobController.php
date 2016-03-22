@@ -24,7 +24,7 @@ class JobController extends Controller
 
         $jobs = $em->getRepository('IbwJobeetBundle:Job')->findAll();
 
-        return $this->render('job/index.html.twig', array(
+        return $this->render('IbwJobeetBundle:Job:index.html.twig', array(
             'jobs' => $jobs,
         ));
     }
@@ -47,7 +47,7 @@ class JobController extends Controller
             return $this->redirectToRoute('ibw_job_show', array('id' => $job->getId()));
         }
 
-        return $this->render('job/new.html.twig', array(
+        return $this->render('IbwJobeetBundle:Job:new.html.twig', array(
             'job' => $job,
             'form' => $form->createView(),
         ));
@@ -59,9 +59,13 @@ class JobController extends Controller
      */
     public function showAction(Job $job)
     {
+		if(!$job) {
+			throw $this->createNotFoundException("Requested job not found.");
+		}
+		
         $deleteForm = $this->createDeleteForm($job);
 
-        return $this->render('job/show.html.twig', array(
+        return $this->render('IbwJobeetBundle:Job:show.html.twig', array(
             'job' => $job,
             'delete_form' => $deleteForm->createView(),
         ));
@@ -85,7 +89,7 @@ class JobController extends Controller
             return $this->redirectToRoute('ibw_job_edit', array('id' => $job->getId()));
         }
 
-        return $this->render('job/edit.html.twig', array(
+        return $this->render('IbwJobeetBundle:Job:edit.html.twig', array(
             'job' => $job,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
